@@ -1,5 +1,5 @@
 Tech:
-Python
-ChromaDB
-SentenceTransformers
-Grok LLM 
+Python <br>
+ChromaDB <br>
+SentenceTransformers<be>
+Grok LLM <br>
