@@ -1,0 +1,2 @@
+Semantic chunking splits documents based on meaning rather than fixed size.
+It improves retrieval quality significantly.

@@ -1,0 +1,2 @@
+Vector databases store embeddings.
+They allow similarity search using cosine distance.
