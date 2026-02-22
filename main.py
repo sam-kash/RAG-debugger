@@ -1,20 +1,22 @@
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
+from groq import Groq
 
 from chunker import load_documents
 from vector_store import add_documents, query_vector_store
 
-# Load env
+
+
+#  Load ENV + Groq Client
+
 
 load_dotenv()
 
-client = OpenAI(
-    api_key=os.getenv("GROK_API_KEY"),
-    base_url="https://api.x.ai/v1"
+client = Groq(
+    api_key=os.environ["GROQ_API_KEY"]  # force error if missing
 )
 
-# load docs
+#  Load Docs + Add to Vector Store
 
 print("Loading documents...")
 docs = load_documents()
@@ -22,9 +24,12 @@ docs = load_documents()
 print("Adding documents to vector store...")
 add_documents(docs)
 
-print("\n🚀 RAG Debug Console Ready\n")
+print("\n RAG Debug Console Ready\n")
 
-# Main loop
+
+
+#  Main Loop
+
 
 while True:
     question = input("Ask a question (type 'exit' to quit): ")
@@ -63,8 +68,9 @@ Question:
 {question}
 """
 
+    # ---- Call GROQ ----
     response = client.chat.completions.create(
-        model="grok-2-latest",   # change if needed
+        model="llama-3.3-70b-versatile",  # recommended Groq model
         messages=[
             {
                 "role": "system",
@@ -80,7 +86,8 @@ Question:
 
     answer = response.choices[0].message.content
 
-    print("\n Final Answer:\n")
+    # ---- Show Final Answer ----
+    print("\n💡 Final Answer:\n")
     print(answer)
 
     # ---- Source Citation ----

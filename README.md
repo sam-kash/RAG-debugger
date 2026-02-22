@@ -1,5 +1,5 @@
 Tech:
 Python <br>
 ChromaDB <br>
-SentenceTransformers<be>
+SentenceTransformers<br>
 Grok LLM <br>

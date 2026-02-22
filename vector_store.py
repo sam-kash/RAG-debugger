@@ -7,7 +7,7 @@ collection = chroma_client.create_collection("rag_collection")
 
 def add_documents(documents):
     for i, doc in enumerate(documents):
-        embedding = model.encode(doc["context"]).tolist()
+        embedding = model.encode(doc["content"]).tolist()
 
         collection.add(
             ids=[str(i)],
